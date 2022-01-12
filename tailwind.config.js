@@ -1,7 +1,32 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "low-hp": "#de4141",
+        "medium-hp": "#f59700",
+        "high-hp": "#f5c400",
+        "epic-hp": "#5a9c39",
+        "bug-type": "#C6D16E",
+        "dragon-type": "#A27DFA",
+        "fairy-type": "#F4BDC9",
+        "fire-type": "#F5AC78",
+        "ghost-type": "#A292BC",
+        "ground-type": "#EBD69D",
+        "normal-type": "#C6C6A7",
+        "psychic-type": "#FA92B2",
+        "steel-type": "#D1D1E0",
+        "dark-type": "#A29288",
+        "electric-type": "#FAE078",
+        "fighting-type": "#D67873",
+        "flying-type": "#C6B7F5",
+        "grass-type": "#A7DB8D",
+        "ice-type": "#BCE6E6",
+        "poison-type": "#C183C1",
+        "rock-type": "#D1C17D",
+        "water-type": "#9DB7F5",
+      },
+    },
   },
   plugins: [],
 };
