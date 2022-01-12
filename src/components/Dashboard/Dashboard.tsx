@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import constructImageUrl from "../../helpers/constructImageUrl";
 import Loading from "../Loading/Loading";
 import { getListPokemon } from "../../services/api.service";
+import ButtonFilter from "../ButtonFilter/ButtonFilter";
 
 export default function Dashboard() {
   const [keyword, setKeyword] = useState("");
@@ -124,16 +125,16 @@ export default function Dashboard() {
   };
 
   const graphClassName = (width: any) => {
-    let className = "h-3 rounded bg";
+    let className = "h-3 rounded ";
     const barColor = 20;
     if (width <= barColor) {
-      className += "-low-hp";
+      className += "bg-low-hp";
     } else if (width > barColor && width <= barColor * 2) {
-      className += "-medium-hp";
+      className += "bg-medium-hp";
     } else if (width > barColor * 2 && width <= barColor * 3) {
-      className += "-high-hp";
+      className += "bg-high-hp";
     } else if (width > barColor * 3 && width <= barColor * 4) {
-      className += "-epic-hp";
+      className += "bg-epic-hp";
     }
     return className;
   };
@@ -158,6 +159,8 @@ export default function Dashboard() {
     }
   };
 
+  console.log(pokemonList);
+
   return (
     <div className="flex flex-1 h-screen">
       {/* left panel */}
@@ -174,19 +177,14 @@ export default function Dashboard() {
           <span className="text-sm font-medium">ALL</span>
         </button>
         {pokemonType?.map((val: any) => (
-          <button
+          <ButtonFilter
             onClick={() => {
               setType(val.name);
               filteredPokemonListBy(val.name, "type");
             }}
-            className={`${
-              type === val.name
-                ? `bg-${val.name}-type text-white`
-                : `bg-gray-100 text-${val.name}-type`
-            } hover:bg-gray-300 w-full h-10 rounded mb-3 flex justify-center items-center`}
-          >
-            <span className="text-sm font-medium uppercase">{val.name}</span>
-          </button>
+            title={val.name}
+            type={type}
+          />
         ))}
       </div>
       {/* content */}
@@ -224,6 +222,10 @@ export default function Dashboard() {
         ) : dataNotFound ? (
           <div className="flex flex-1 justify-center mt-10">
             <h5>Pokemon {keyword} not found!</h5>
+          </div>
+        ) : !pokemonList.length ? (
+          <div className="flex flex-1 justify-center mt-10">
+            <h5>Pokemon not availabe!</h5>
           </div>
         ) : (
           <div className="flex flex-col flex-1 overflow-y-auto m-2">
