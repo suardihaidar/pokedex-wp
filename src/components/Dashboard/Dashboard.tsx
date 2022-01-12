@@ -3,6 +3,7 @@ import constructImageUrl from "../../helpers/constructImageUrl";
 import Loading from "../Loading/Loading";
 import { getListPokemon } from "../../services/api.service";
 import ButtonFilter from "../ButtonFilter/ButtonFilter";
+import colors from "../../assets/colors";
 
 export default function Dashboard() {
   const [keyword, setKeyword] = useState("");
@@ -316,48 +317,49 @@ export default function Dashboard() {
                 {pokemonDetail?.name}
               </div>
 
-              <div className="flex justify-center flex-wrap w-full">
+              <div className="flex justify-center flex-wrap w-full text-sm">
                 {pokemonDetail?.types?.map((val: any) => (
                   <div
-                    className={`bg-${val?.type?.name}-type rounded-lg p-3 h-10 flex justify-center items-center m-1 uppercase font-semibold`}
+                    className="rounded-lg p-3 h-9 flex justify-center items-center m-1 uppercase font-semibold"
+                    style={{ backgroundColor: `${colors[val.type?.name]}` }}
                   >
                     {val.type?.name}
                   </div>
                 ))}
               </div>
 
-              <strong className="mt-2">ABILITIES</strong>
+              <strong className="mt-2 text-sm">ABILITIES</strong>
               <div className="flex justify-center flex-wrap w-full">
                 {pokemonDetail?.abilities?.map((val: any) => (
-                  <div className="bg-gray-100 rounded-lg p-3 h-10 flex justify-center items-center m-1 capitalize font-medium">
+                  <div className="bg-gray-100 rounded-lg p-3 h-9 flex justify-center items-center m-1 capitalize font-medium text-sm">
                     {val.ability?.name}
                   </div>
                 ))}
               </div>
               {/* height, weight, base exp */}
-              <div className="flex w-full justify-center flex-row my-2">
+              <div className="flex w-full justify-center flex-row my-2 text-sm">
                 <div className="flex flex-col justify-center items-center">
                   <strong>HEIGHT</strong>
-                  <div className="bg-gray-100 rounded-lg p-3 h-10 flex justify-center items-center m-1 w-28">
+                  <div className="bg-gray-100 rounded-lg p-3 h-9 w-24 flex justify-center items-center m-1">
                     {pokemonDetail?.height / 10} m
                   </div>
                 </div>
                 <div className="flex flex-col justify-center items-center">
                   <strong>WEIGHT</strong>
-                  <div className="bg-gray-100 rounded-lg p-3 h-10 flex justify-center items-center m-1 w-28">
+                  <div className="bg-gray-100 rounded-lg p-3 h-9 w-24 flex justify-center items-center m-1">
                     {pokemonDetail?.weight / 10} kg
                   </div>
                 </div>
                 <div className="flex flex-col justify-center items-center">
                   <strong>BASE EXP</strong>
-                  <div className="bg-gray-100 rounded-lg p-3 h-10 flex justify-center items-center m-1 w-28">
+                  <div className="bg-gray-100 rounded-lg p-3 h-9 w-24 flex justify-center items-center m-1">
                     {pokemonDetail?.base_experience}
                   </div>
                 </div>
               </div>
               {/* stats */}
               <div className="flex flex-col justify-center items-center">
-                <strong>STATS</strong>
+                <strong className="text-sm">STATS</strong>
                 <table className="text-xs">
                   <tbody>
                     {pokemonDetail?.stats?.map((val: any) => (
